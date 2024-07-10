@@ -66,4 +66,8 @@ jobs:
           sudo docker pull ${{ env.IMAGE_NAME }}
           sudo docker stop mooluck-node || true
           sudo docker rm mooluck-node || true
-          sudo docker run -d --name mooluck-node -p 3000:5173 ${{ env.IMAGE_NAME }}
+          sudo docker run -d --name mooluck-node -p 3000:8080 ${{ env.IMAGE_NAME }} \
+            -e LIVEKIT_API_KEY="${{ secrets.LIVEKIT_API_KEY }}" \
+            -e LIVEKIT_API_SECRET="${{ secrets.LIVEKIT_API_SECRET }}" \
+            -e LOCALHOST_URL=${{ secrets.LOCALHOST_URL }} \
+            -e APP_URL=${{ secrets.APP_URL }}
