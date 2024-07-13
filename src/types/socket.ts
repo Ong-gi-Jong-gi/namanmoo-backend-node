@@ -1,1 +1,4 @@
-export type TotalRooms = { [key: string]: { users: string[] } };
+export type ChallengeStatus = "idle" | "ongoing" | "finished";
+export type TotalRooms = {
+  [key: string]: { users: string[]; challengeStatus: ChallengeStatus };
+};
