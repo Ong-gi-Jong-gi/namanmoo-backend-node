@@ -1,8 +1,9 @@
 import { Socket } from "socket.io";
 import { TotalRooms } from "../types/socket.js";
+import EVENT from "../constants/EVENT.js";
 
 const disconnectHandler = (socket: Socket, totalRooms: TotalRooms) => {
-  socket.on("disconnect", () => {
+  socket.on(EVENT.DISCONNECT, () => {
     // 연결이 끊어지면 방에서 사용자 제거
     Object.keys(socket.rooms).forEach((room) => {
       if (totalRooms[room]) {

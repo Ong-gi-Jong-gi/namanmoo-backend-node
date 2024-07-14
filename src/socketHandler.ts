@@ -3,6 +3,7 @@ import { TotalRooms } from "./types/socket.js";
 import joinHandler from "./socketHandler/joinHandler.js";
 import leaveHandler from "./socketHandler/leaveHandler.js";
 import disconnectHandler from "./socketHandler/disconnectHandler.js";
+import challengeHandler from "./socketHandler/challengeHandler.js";
 
 /* WebSocket */
 
@@ -19,6 +20,8 @@ const socketHandler = (wsServer: SocketIo) => {
     leaveHandler(socket, totalRooms);
     // Step 4: Disconnect
     disconnectHandler(socket, totalRooms);
+
+    challengeHandler(socket, totalRooms);
   });
 };
 

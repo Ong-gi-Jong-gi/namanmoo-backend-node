@@ -1,8 +1,9 @@
 import { Socket } from "socket.io";
 import { TotalRooms } from "../types/socket.js";
+import EVENT from "../constants/EVENT.js";
 
 const leaveHandler = (socket: Socket, totalRooms: TotalRooms) => {
-  socket.on("leave", (data: { room: string }) => {
+  socket.on(EVENT.LEAVE, (data: { room: string }) => {
     if (!data.room) return;
     socket.leave(data.room);
     // 방에서 사용자 제거
@@ -18,6 +19,7 @@ const leaveHandler = (socket: Socket, totalRooms: TotalRooms) => {
     }
 
     console.log(`[Socket] ${socket.id} left ${data.room}`);
+    console.log(totalRooms);
   });
 };
 
