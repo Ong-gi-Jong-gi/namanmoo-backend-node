@@ -9,7 +9,7 @@ import dotenv from "dotenv";
 import http from "http";
 import cors from "cors";
 import { Server } from "socket.io";
-import socketHandler from "./socket.js";
+import socketHandler from "./socketHandler.js";
 dotenv.config();
 
 const createToken = async (userInfo: AccessTokenOptions, grant: VideoGrant) => {
@@ -55,6 +55,7 @@ app.get("/getToken", async (req, res) => {
     canPublish: true,
     canPublishData: true,
     canSubscribe: true,
+    canUpdateOwnMetadata: true,
   };
   const token = await createToken(
     { identity: identity as string, name: name as string },
