@@ -37,7 +37,7 @@ jobs:
       uses: actions/upload-artifact@v4.3.3
       with:
         name: image-name
-        path: image-name.txt  # Adjusted path
+        path: image-name.txt
 
   deploy:
     runs-on: ubuntu-latest
@@ -66,8 +66,9 @@ jobs:
           sudo docker pull ${{ env.IMAGE_NAME }}
           sudo docker stop mooluck-node || true
           sudo docker rm mooluck-node || true
-          sudo docker run -d --name mooluck-node -p 3000:8080 ${{ env.IMAGE_NAME }} \
-            -e LIVEKIT_API_KEY="${{ secrets.LIVEKIT_API_KEY }}" \
-            -e LIVEKIT_API_SECRET="${{ secrets.LIVEKIT_API_SECRET }}" \
+          sudo docker run -d --name mooluck-node -p 3000:8080 \
+            -e LIVEKIT_API_KEY=${{ secrets.LIVEKIT_API_KEY }} \
+            -e LIVEKIT_API_SECRET=${{ secrets.LIVEKIT_API_SECRET }} \
             -e LOCALHOST_URL=${{ secrets.LOCALHOST_URL }} \
-            -e APP_URL=${{ secrets.APP_URL }}
+            -e APP_URL=${{ secrets.APP_URL }} \
+            ${{ env.IMAGE_NAME }}
