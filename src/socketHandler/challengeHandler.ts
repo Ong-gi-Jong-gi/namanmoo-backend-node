@@ -21,7 +21,8 @@ const challengeHandler = (socket: Socket, totalRooms: TotalRooms) => {
         clearInterval(intervalId);
         socket.emit(EVENT.CHALLENGE_END);
         socket.to(data.room).emit(EVENT.CHALLENGE_END);
-        totalRooms[data.room].challengeStatus = "finished";
+        if (totalRooms[data.room])
+          totalRooms[data.room].challengeStatus = "finished";
       }
     }, 1000);
   });
