@@ -11,7 +11,7 @@ const challengeHandler = (socket: Socket, totalRooms: TotalRooms) => {
 
     // Timer logic
     // 40초 타이머
-    let remainingTime = 12; // seconds
+    let remainingTime = 20; // seconds
     const intervalId = setInterval(() => {
       remainingTime -= 1;
       // 방에 있는 모든 사용자에게 남은 시간 전송
